@@ -32,7 +32,7 @@ int main() {
 	readString(buf);
 	a = atoi(buf);
 	while (!valid) {
-		printf("\nOperation (|, &, ^, <<, >> ~): ");
+		printf("Operation (|, &, ^, <<, >>, ~): ");
 		readString(buf);
 		operator[0] = buf[0];
 		switch (operator[0]) {
@@ -47,7 +47,7 @@ int main() {
 			case '|':
 			case '&':
 			case '^':
-				printf("\nNumber b: ");
+				printf("Number b: ");
 				readString(buf);
 				b = atoi(buf);
 				if (!valid) {
