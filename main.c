@@ -23,43 +23,54 @@ void readString(char str[3]) {
 	free(in);
 }
 
-int main() {
+int main(int argc, char *argv[]) {
 	int a, b, res = 0;
 	char operator[3];
-	char buf[3];
-	char valid = 0;
-	printf("\nNumber a: ");
-	readString(buf);
-	a = atoi(buf);
-	while (!valid) {
-		printf("Operation (|, &, ^, <<, >>, ~): ");
+	if (argc == 4) {
+		a = atoi(argv[1]);
+		strncpy(operator, argv[2], 3);
+		b = atoi(argv[3]);
+	}
+	else if (argc == 3) {
+		strncpy(operator, argv[1], 3);
+		a = atoi(argv[2]);
+	}
+	else {
+		char buf[3];
+		char valid = 0;
+		printf("\nNumber a: ");
 		readString(buf);
-		operator[0] = buf[0];
-		switch (operator[0]) {
-			case '<':
-			case '>':
-				if (buf[1] != buf[0]) {
-					break;
-				}
-				operator[1] = operator[0];
-				valid = 1;
-				operator[2] = '\0';
-			case '|':
-			case '&':
-			case '^':
-				printf("Number b: ");
-				readString(buf);
-				b = atoi(buf);
-				if (!valid) {
+		a = atoi(buf);
+		while (!valid) {
+			printf("Operation (|, &, ^, <<, >>, ~): ");
+			readString(buf);
+			operator[0] = buf[0];
+			switch (operator[0]) {
+				case '<':
+				case '>':
+					if (buf[1] != buf[0]) {
+						break;
+					}
+					operator[1] = operator[0];
 					valid = 1;
-					operator[1] = '\0';
-				}
-				break;
-			case '~':
-				valid = 1;
-				break;
-			default:
-				break;
+					operator[2] = '\0';
+				case '|':
+				case '&':
+				case '^':
+					printf("Number b: ");
+					readString(buf);
+					b = atoi(buf);
+					if (!valid) {
+						valid = 1;
+						operator[1] = '\0';
+					}
+					break;
+				case '~':
+					valid = 1;
+					break;
+				default:
+					break;
+			}
 		}
 	}
 
@@ -84,6 +95,9 @@ int main() {
 			case '^':
 				res = a ^ b;
 				break;
+			default:
+				printf("Invalid operator: %s\n", operator);
+				return 1;
 		}
 		printf("%d %s %d = %d\n", a, operator, b, res);
 	}
