@@ -100,17 +100,6 @@ int main() {
 		printf("\nres:\t");
 		showbits(res);
 	}
-
-	///* assume we have a function that prints a binary string when given
-	//   a decimal integer
-	//   */
-	//showbits(j);
-
-	///* the loop for right shift operation */
-	//for ( m = 0; m <= 5; m++ ) {
-	//	n = j >> m;
-	//	printf("%d right shift %d gives ", j, m);
-	//	showbits(n);
-	//}
+}
 	return 0;
 }
