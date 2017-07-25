@@ -66,11 +66,6 @@ int main() {
 	if (operator[0] == '~') {
 		res = ~a;
 		printf("%s%d = %d\n", operator, a, res);
-
-		printf("a:\t");
-		showbits(a);
-		printf("\nres:\t");
-		showbits(res);
 	}
 	else {
 		switch (operator[0]) {
@@ -91,14 +86,20 @@ int main() {
 				break;
 		}
 		printf("%d %s %d = %d\n", a, operator, b, res);
+	}
 
-		printf("a:\t");
-		showbits(a);
+	printf("\n################################\n");
+	printf("Bit Representation\n");
+	printf("################################\n\n");
+	printf("a:\t");
+	showbits(a);
+	if (operator[0] != '~') {
 		printf("\nb:\t");
 		showbits(b);
-		printf("\nres:\t");
-		showbits(res);
 	}
-}
+	printf("\nres:\t");
+	showbits(res);
+	printf("\n");
+
 	return 0;
 }
